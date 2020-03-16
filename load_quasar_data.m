@@ -42,3 +42,9 @@ y = my*y + by;
 
 theta = inv(X'*X)* X' * y
 
+figure(1);
+  hold off;
+  plot(lambdas,y,"*r","linewidth",1);
+  hold on;
+  plot(lambdas,X*theta,"b","linewidth",2);
+
