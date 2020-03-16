@@ -15,3 +15,30 @@ lambdas = quasar_train(1, :)';
 train_qso = quasar_train(2:end, :);
 load quasar_test.csv;
 test_qso = quasar_test(2:end, :);
+
+%Theta Implementation
+y = train_qso(1,:)';
+
+x0 = [ones(rows(lambdas),1),lambdas];
+
+minw = min(x0(:,2));
+maxw = max(x0(:,2));
+
+mx = 2/(maxw-minw);
+bx = 1-mx*maxw;
+NM = [1 bx; 0 mx];
+
+X=x0*NM;
+
+
+%Nomralize Y
+minRes = min(y);
+maxRes = max(y);
+my = 2/(maxRes - minRes);
+by = 1 - my*maxRes;
+
+y = my*y + by;
+
+
+theta = inv(X'*X)* X' * y
+
