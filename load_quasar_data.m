@@ -44,7 +44,126 @@ theta = inv(X'*X)* X' * y
 
 figure(1);
   hold off;
-  plot(lambdas,y,"*r","linewidth",1);
+  plot(lambdas,y,"xk","linewidth",1);
   hold on;
-  plot(lambdas,X*theta,"b","linewidth",2);
+  plot(lambdas,X*theta,"r","linewidth",2);
+  xlabel('Lambdas (Angstrom (Å))');
+  ylabel('Flujo de Espectral');
 
+
+#Tau = 5  
+figure(2);
+hold off;
+
+xpon = [ones(rows(lambdas),1),lambdas(:,1)];
+ypon = train_qso(1,:)';
+plot(lambdas,ypon,"+r");
+hold on;
+tau=5;
+yar=[];  
+    for xite = xpon'      
+        w = exp(-(xpon(:,2)-xite(2,1)).^2/(2*tau^2));
+        W = diag(w, 0);
+        theta = inv(xpon' * W * xpon) * xpon' * W * ypon;
+        yar = [yar theta'*xite];
+    end
+yp2 = yar';
+plot(lambdas, yp2,'b', 'linewidth', 3);
+hold on;
+xlabel('Lambdas (Angstrom (Å))');
+ylabel('Flujo de Espectral');
+title ("Tau = 5");
+
+
+#Tau = 1  
+figure(3);
+hold off;
+
+xpon = [ones(rows(lambdas),1),lambdas(:,1)];
+ypon = train_qso(1,:)';
+plot(lambdas,ypon,"+r");
+hold on;
+tau=1;
+yar=[];  
+    for xite = xpon'      
+        w = exp(-(xpon(:,2)-xite(2,1)).^2/(2*tau^2));
+        W = diag(w, 0);
+        theta = inv(xpon' * W * xpon) * xpon' * W * ypon;
+        yar = [yar theta'*xite];
+    end
+yp2 = yar';
+plot(lambdas, yp2,'b', 'linewidth', 3);
+hold on;
+xlabel('Lambdas (Angstrom (Å))');
+ylabel('Flujo de Espectral');
+title ("Tau = 1");
+
+#Tau = 10  
+figure(4);
+hold off;
+
+xpon = [ones(rows(lambdas),1),lambdas(:,1)];
+ypon = train_qso(1,:)';
+plot(lambdas,ypon,"+r");
+hold on;
+tau=10;
+yar=[];  
+    for xite = xpon'      
+        w = exp(-(xpon(:,2)-xite(2,1)).^2/(2*tau^2));
+        W = diag(w, 0);
+        theta = inv(xpon' * W * xpon) * xpon' * W * ypon;
+        yar = [yar theta'*xite];
+    end
+yp2 = yar';
+plot(lambdas, yp2,'b', 'linewidth', 3);
+hold on;
+xlabel('Lambdas (Angstrom (Å))');
+ylabel('Flujo de Espectral');
+title ("Tau = 10");
+
+#Tau = 100  
+figure(5);
+hold off;
+
+xpon = [ones(rows(lambdas),1),lambdas(:,1)];
+ypon = train_qso(1,:)';
+plot(lambdas,ypon,"+r");
+hold on;
+tau=100;
+yar=[];  
+    for xite = xpon'      
+        w = exp(-(xpon(:,2)-xite(2,1)).^2/(2*tau^2));
+        W = diag(w, 0);
+        theta = inv(xpon' * W * xpon) * xpon' * W * ypon;
+        yar = [yar theta'*xite];
+    end
+yp2 = yar';
+plot(lambdas, yp2,'b', 'linewidth', 3);
+hold on;
+xlabel('Lambdas (Angstrom (Å))');
+ylabel('Flujo de Espectral');
+title ("Tau = 100");
+
+
+#Tau = 1000 
+figure(6);
+hold off;
+
+xpon = [ones(rows(lambdas),1),lambdas(:,1)];
+ypon = train_qso(1,:)';
+plot(lambdas,ypon,"+r");
+hold on;
+tau=1000;
+yar=[];  
+    for xite = xpon'      
+        w = exp(-(xpon(:,2)-xite(2,1)).^2/(2*tau^2));
+        W = diag(w, 0);
+        theta = inv(xpon' * W * xpon) * xpon' * W * ypon;
+        yar = [yar theta'*xite];
+    end
+yp2 = yar';
+plot(lambdas, yp2,'b', 'linewidth', 3);
+hold on;
+xlabel('Lambdas (Angstrom (Å))');
+ylabel('Flujo de Espectral');
+title ("Tau = 1000");
